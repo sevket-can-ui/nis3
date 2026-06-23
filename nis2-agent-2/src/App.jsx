@@ -472,7 +472,7 @@ export default function App() {
                             <input style={inp} placeholder={f.placeholder} value={genAnswers[f.id] || ""} onChange={e => setGenAnswers({ ...genAnswers, [f.id]: e.target.value })} />
                           </div>
                         ))}
-                        <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+                       <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", marginTop: 16 }}>
   <button
     onClick={submitGenerate}
     disabled={genLoading}
@@ -485,6 +485,44 @@ export default function App() {
   >
     {genLoading ? "Entwurf wird erstellt…" : "Entwurf erstellen"}
   </button>
+
+  <button
+    onClick={() => {
+      if (!genLoading) {
+        setGenDocType(null);
+        setGenAnswers({});
+      }
+    }}
+    disabled={genLoading}
+    style={btn("ghost", {
+      fontSize: 13,
+      padding: "10px 18px",
+      opacity: genLoading ? 0.5 : 1,
+      cursor: genLoading ? "not-allowed" : "pointer"
+    })}
+  >
+    Abbrechen
+  </button>
+</div>
+
+{genLoading && (
+  <div
+    style={{
+      marginTop: 14,
+      padding: 14,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      background: C.surface2,
+      color: C.text,
+      fontSize: 14,
+      lineHeight: 1.6
+    }}
+  >
+    <strong>Entwurf wird gerade erstellt.</strong>
+    <br />
+    Bitte warten. Die KI erstellt jetzt den Dokumententwurf. Nicht mehrfach klicken und nicht die Seite wechseln.
+  </div>
+)}
 
   <button
     onClick={() => {
