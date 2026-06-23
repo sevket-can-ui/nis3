@@ -1,24 +1,8 @@
 {
+  "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
   "rewrites": [
-    {
-      "source": "/api/betroffenheit",
-      "destination": "/api/betroffenheit.js"
-    },
-    {
-      "source": "/api/evidence-check",
-      "destination": "/api/evidence-check.js"
-    },
-    {
-      "source": "/api/report",
-      "destination": "/api/report.js"
-    },
-    {
-      "source": "/api/generate-doc",
-      "destination": "/api/generate-doc.js"
-    },
     {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
