@@ -473,7 +473,6 @@ export default function App() {
                           </div>
                         ))}
                         <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-                         <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", marginTop: 16 }}>
   <button
     onClick={submitGenerate}
     disabled={genLoading}
