@@ -1,0 +1,179 @@
+// src/knowledge.js — Laien-Wissen: Welche Dokumente? Was bedeuten die Begriffe?
+
+// ─── DOKUMENTEN-GUIDE ───
+// Erklärt jedem Laien: Was ist das Dokument? Warum braucht NIS2 es? Was muss rein?
+export const DOCUMENT_GUIDE = [
+  {
+    id: "leitlinie",
+    icon: "📜",
+    name: "Informationssicherheitsleitlinie",
+    kurz: "Das Grundsatzdokument der Chefetage zur IT-Sicherheit",
+    laie: "Stell dir das wie ein Versprechen der Geschäftsführung vor: „So ernst nehmen wir IT-Sicherheit in unserem Unternehmen.“ Es ist das oberste Dokument, auf das sich alle anderen Regeln beziehen.",
+    warum: "NIS2 verlangt, dass die Geschäftsführung Verantwortung übernimmt. Ohne dieses unterschriebene Dokument gibt es keinen formalen Nachweis dafür.",
+    mussRein: [
+      "Unterschrift und Datum der Geschäftsführung",
+      "Wer ist verantwortlich (der ISB)",
+      "Für wen gilt es (alle Mitarbeiter)",
+      "Wann wird es überprüft (z.B. jährlich)",
+    ],
+    tipp: "Eine generische Vorlage aus dem Internet reicht NICHT. Es muss euer Unternehmen nennen und unterschrieben sein.",
+    nis2: "BSI ISMS.1.A3 · NIS2 Art. 20",
+  },
+  {
+    id: "risiko",
+    icon: "⚠️",
+    name: "Risikoanalyse",
+    kurz: "Die Übersicht: Was kann schiefgehen und wie schlimm wäre es?",
+    laie: "Hier listet ihr auf, welche Gefahren es für eure IT gibt (z.B. Hackerangriff, Stromausfall, Datenverlust) und bewertet, wie wahrscheinlich und wie schlimm jede Gefahr ist. Danach entscheidet ihr, was ihr dagegen tut.",
+    warum: "NIS2 verlangt, dass ihr eure Risiken systematisch kennt. Man kann sich nur schützen, wenn man weiß wovor.",
+    mussRein: [
+      "Liste eurer wichtigen IT-Systeme (kommt aus dem Asset-Inventar)",
+      "Welche Gefahren bedrohen sie",
+      "Wie wahrscheinlich und wie teuer wäre der Schaden",
+      "Was tut ihr dagegen — und wer ist zuständig",
+    ],
+    tipp: "Ohne ein Asset-Inventar (siehe unten) ist eine Risikoanalyse unvollständig. Erst die Systeme erfassen, dann die Risiken.",
+    nis2: "BSI 200-3 · NIS2 Art. 21 Abs. 2 lit. a",
+  },
+  {
+    id: "asset",
+    icon: "🗂️",
+    name: "Asset-Inventar",
+    kurz: "Die vollständige Liste eurer IT — vom Server bis zur Cloud",
+    laie: "Eine Inventarliste aller IT-Gegenstände: Server, Laptops, Software, Cloud-Dienste, Datenbanken. Für jeden Eintrag: Wie wichtig ist er? Wer kümmert sich darum? Hängt etwas Kritisches davon ab?",
+    warum: "Ihr könnt nichts schützen, was ihr nicht kennt. Das Asset-Inventar ist die Grundlage für fast alles andere.",
+    mussRein: [
+      "Alle Systeme: Hardware, Software, Cloud, ggf. Produktionsanlagen",
+      "Wie kritisch ist jedes System für den Betrieb",
+      "Wer ist verantwortlich (Owner)",
+      "Wann zuletzt aktualisiert",
+    ],
+    tipp: "Eine reine Hardware-Liste reicht nicht. Cloud-Dienste (Microsoft 365, etc.) und kritische Software gehören dazu.",
+    nis2: "BSI ORP.4 · NIS2 Art. 21 Abs. 2 lit. i",
+  },
+  {
+    id: "backup",
+    icon: "💾",
+    name: "Backup- & Notfallkonzept",
+    kurz: "Der Plan: Wie kommt ihr nach einem Ausfall wieder ans Laufen?",
+    laie: "Beschreibt, wie ihr eure Daten sichert und wie ihr nach einem Notfall (z.B. Ransomware, Serverausfall) den Betrieb wiederherstellt. Wichtig: Ihr müsst auch beweisen, dass die Wiederherstellung wirklich funktioniert — nicht nur, dass ihr Backups macht.",
+    warum: "Ein Hackerangriff oder Ausfall darf euch nicht lahmlegen. NIS2 verlangt einen erprobten Wiederanlaufplan.",
+    mussRein: [
+      "RTO: Wie schnell muss ein System wieder laufen?",
+      "RPO: Wie viele Daten dürft ihr maximal verlieren?",
+      "Protokolle von echten Wiederherstellungs-Tests",
+      "Schutz gegen Ransomware (z.B. nicht-überschreibbare Backups)",
+    ],
+    tipp: "Der häufigste Fehler: „Wir machen Backups“ ohne je getestet zu haben, ob die Wiederherstellung klappt. Test-Protokolle sind Pflicht.",
+    nis2: "BSI 200-4 · NIS2 Art. 21 Abs. 2 lit. c",
+  },
+  {
+    id: "incident",
+    icon: "🚨",
+    name: "Incident-Response-Plan",
+    kurz: "Die Anleitung: Was tun, wenn es zum Sicherheitsvorfall kommt?",
+    laie: "Ein Notfall-Drehbuch für Sicherheitsvorfälle. Wer wird informiert? Wer entscheidet? Und ganz wichtig bei NIS2: Schwere Vorfälle müssen innerhalb von 24 Stunden an die Behörde (BSI) gemeldet werden.",
+    warum: "Im Ernstfall zählt jede Minute. NIS2 schreibt feste Meldefristen vor — die müsst ihr vorbereitet haben.",
+    mussRein: [
+      "Was gilt überhaupt als Sicherheitsvorfall",
+      "Meldekette: Wer informiert wen",
+      "Die 24-Stunden-Frühwarnung und 72-Stunden-Meldung ans BSI",
+      "Kontaktdaten (intern und BSI)",
+    ],
+    tipp: "Die 24h/72h-Fristen ans BSI sind das Herzstück. Ein Plan ohne diese Fristen erfüllt NIS2 nicht.",
+    nis2: "BSI DER.2.1 · NIS2 Art. 23",
+  },
+  {
+    id: "lieferanten",
+    icon: "🔗",
+    name: "Lieferantenübersicht",
+    kurz: "Wer hat Zugriff auf eure Systeme — und wie sicher sind die?",
+    laie: "Eine Liste aller externen Dienstleister, die Zugang zu euren Systemen oder Daten haben (z.B. IT-Dienstleister, Cloud-Anbieter, Wartungsfirmen). Für jeden: Wie kritisch ist er und welche Sicherheitsnachweise hat er?",
+    warum: "Ein Angreifer nutzt oft den schwächsten Partner als Einfallstor. NIS2 verlangt, dass ihr eure Lieferkette absichert.",
+    mussRein: [
+      "Alle Dienstleister mit Systemzugang",
+      "Wie kritisch ist jeder für euch",
+      "Sicherheitsanforderungen in den Verträgen",
+      "Nachweise der Lieferanten (z.B. ISO 27001)",
+    ],
+    tipp: "Eine reine Adressliste reicht nicht. Es geht um die Sicherheitsbewertung jedes Partners.",
+    nis2: "NIS2 Art. 21 Abs. 2 lit. d",
+  },
+  {
+    id: "schulung",
+    icon: "🎓",
+    name: "Schulungsnachweise",
+    kurz: "Beweis, dass eure Mitarbeiter geschult werden",
+    laie: "Belege dafür, dass eure Mitarbeiter regelmäßig in IT-Sicherheit geschult werden — z.B. Teilnahmelisten, Schulungspläne, Ergebnisse von Phishing-Tests.",
+    warum: "Die meisten Angriffe zielen auf Menschen, nicht auf Technik. NIS2 verlangt deshalb regelmäßige Sensibilisierung.",
+    mussRein: [
+      "Schulungsplan für das Jahr",
+      "Teilnahmenachweise der Mitarbeiter",
+      "Auch die Geschäftsführung muss geschult werden",
+      "Idealerweise: Phishing-Simulationen mit Auswertung",
+    ],
+    tipp: "Auch die Chefetage muss nachweislich geschult sein — das verlangt NIS2 Art. 20 ausdrücklich.",
+    nis2: "BSI ORP.3 · NIS2 Art. 20 Abs. 2",
+  },
+];
+
+// ─── GLOSSAR ───
+// Jeder Fachbegriff in einem Satz Klartext
+export const GLOSSARY = {
+  "NIS2": "Ein EU-Gesetz für Cybersicherheit, das seit Oktober 2024 gilt. Es verpflichtet viele Unternehmen, ihre IT besser zu schützen.",
+  "ISMS": "Informationssicherheits-Managementsystem. Klingt kompliziert, heißt einfach: ein geordnetes System, mit dem ein Unternehmen seine IT-Sicherheit organisiert und nachweisbar macht.",
+  "ISB": "Informationssicherheitsbeauftragter. Die Person im Unternehmen, die für IT-Sicherheit zuständig ist — eine Art Sicherheits-Verantwortlicher.",
+  "BSI": "Bundesamt für Sicherheit in der Informationstechnik. Die deutsche Behörde für Cybersicherheit. Bei NIS2 ist sie die Meldestelle für Vorfälle.",
+  "KRITIS": "Kritische Infrastrukturen — Unternehmen, deren Ausfall die Gesellschaft gefährden würde, z.B. Strom-, Wasser- oder Krankenhausversorgung.",
+  "RTO": "Recovery Time Objective. Auf Deutsch: Wie schnell muss ein System nach einem Ausfall wieder laufen? (z.B. „innerhalb von 4 Stunden“)",
+  "RPO": "Recovery Point Objective. Auf Deutsch: Wie viele Daten dürft ihr im Notfall maximal verlieren? (z.B. „maximal die letzte Stunde“)",
+  "Asset": "Ein IT-Gegenstand oder -Wert: Server, Laptop, Software, Cloud-Dienst, Datenbank. Alles, was zur IT gehört und schützenswert ist.",
+  "Gap-Analyse": "Ein Soll-Ist-Vergleich. Sie zeigt die Lücke zwischen dem, was NIS2 verlangt (Soll), und dem, was ihr schon habt (Ist).",
+  "Nachweis": "Auch „Evidence“ genannt. Ein Beleg dafür, dass eine Sicherheitsmaßnahme wirklich umgesetzt ist — nicht nur behauptet wird.",
+  "Evidence Score": "Eine Bewertung von 0 bis 100, wie gut ein Dokument als Nachweis taugt. Niedrig heißt: Das Dokument hält einer Prüfung nicht stand.",
+  "BCM": "Business Continuity Management. Das Notfallmanagement für den Geschäftsbetrieb — der Plan, wie das Unternehmen nach einem Ausfall weiterarbeitet.",
+  "BIA": "Business Impact Analyse. Die Untersuchung, welche Geschäftsprozesse am wichtigsten sind und wie teuer ihr Ausfall wäre.",
+  "MFA": "Multi-Faktor-Authentifizierung. Login mit zwei Schritten statt nur Passwort — z.B. Passwort plus Code aufs Handy. Schützt vor Passwortdiebstahl.",
+  "VVT": "Verzeichnis von Verarbeitungstätigkeiten. Eine Übersicht aller Stellen, an denen personenbezogene Daten verarbeitet werden (Pflicht aus der DSGVO).",
+  "Besonders wichtige Einrichtung": "Die strengere NIS2-Kategorie. Trifft auf größere Unternehmen in besonders kritischen Sektoren zu — mit höheren Pflichten und Bußgeldern.",
+  "Wichtige Einrichtung": "Die zweite NIS2-Kategorie. Etwas weniger streng als „besonders wichtig“, aber ebenfalls voll von NIS2 betroffen.",
+};
+
+// ─── FRAGEN pro Dokumenttyp (wenn Nutzer kein Dokument hat) ───
+export const DOC_QUESTIONS = {
+  "Informationssicherheitsleitlinie": [
+    { id: "verantwortlich", frage: "Wer ist bei Ihnen für IT-Sicherheit verantwortlich?", placeholder: "z.B. IT-Leiter Herr Müller, oder noch niemand" },
+    { id: "ziele", frage: "Was sind Ihre wichtigsten Sicherheitsziele?", placeholder: "z.B. Schutz von Kundendaten, Verfügbarkeit der Produktion" },
+    { id: "freigabe", frage: "Hat die Geschäftsführung dem Thema schon formal zugestimmt?", placeholder: "z.B. ja mündlich, noch nichts schriftlich" },
+  ],
+  "Incident-Response-Plan": [
+    { id: "meldeweg", frage: "An wen wird aktuell ein IT-Problem gemeldet?", placeholder: "z.B. an die IT-Abteilung per Mail" },
+    { id: "verantwortlich", frage: "Wer entscheidet im Notfall?", placeholder: "z.B. IT-Leiter, im Urlaub niemand" },
+    { id: "extern", frage: "Haben Sie einen externen IT-Dienstleister für Notfälle?", placeholder: "z.B. ja, Firma XY mit 4h-Reaktionszeit" },
+  ],
+  "Risikoanalyse": [
+    { id: "systeme", frage: "Was sind Ihre wichtigsten IT-Systeme?", placeholder: "z.B. ERP, Produktionssteuerung, Mailserver" },
+    { id: "gefahren", frage: "Wovor haben Sie am meisten Sorge?", placeholder: "z.B. Ransomware, Ausfall der Produktion" },
+    { id: "massnahmen", frage: "Welche Schutzmaßnahmen haben Sie schon?", placeholder: "z.B. Firewall, Virenschutz, Backups" },
+  ],
+  "Asset-Inventar": [
+    { id: "systeme", frage: "Welche IT-Systeme setzen Sie ein?", placeholder: "z.B. 20 Laptops, 3 Server, Microsoft 365" },
+    { id: "cloud", frage: "Welche Cloud-Dienste nutzen Sie?", placeholder: "z.B. Microsoft 365, Datev, Salesforce" },
+    { id: "kritisch", frage: "Welches System wäre am schlimmsten bei Ausfall?", placeholder: "z.B. die Produktionssteuerung" },
+  ],
+  "Backup- & Notfallkonzept": [
+    { id: "backup", frage: "Wie sichern Sie aktuell Ihre Daten?", placeholder: "z.B. tägliches Backup auf NAS" },
+    { id: "test", frage: "Haben Sie schon mal eine Wiederherstellung getestet?", placeholder: "z.B. nein, noch nie" },
+    { id: "rto", frage: "Wie lange dürfte ein wichtiges System maximal ausfallen?", placeholder: "z.B. maximal 4 Stunden" },
+  ],
+  "Lieferantenübersicht": [
+    { id: "dienstleister", frage: "Welche externen Dienstleister haben Zugriff auf Ihre Systeme?", placeholder: "z.B. IT-Firma, Cloud-Anbieter, Wartung" },
+    { id: "kritisch", frage: "Welcher davon ist am wichtigsten für Sie?", placeholder: "z.B. unser IT-Dienstleister" },
+    { id: "vertrag", frage: "Gibt es Sicherheitsvereinbarungen in den Verträgen?", placeholder: "z.B. AVV vorhanden, sonst nichts" },
+  ],
+  "Schulungsnachweise": [
+    { id: "schulung", frage: "Werden Mitarbeiter aktuell geschult?", placeholder: "z.B. nein, oder einmalig beim Eintritt" },
+    { id: "phishing", frage: "Gab es schon Phishing-Tests?", placeholder: "z.B. nein" },
+    { id: "management", frage: "Wurde die Geschäftsführung geschult?", placeholder: "z.B. nein" },
+  ],
+};
