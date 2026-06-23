@@ -473,11 +473,57 @@ export default function App() {
                           </div>
                         ))}
                         <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-                          <button onClick={submitGenerate} disabled={genLoading} style={btn("primary", { fontSize: 13, padding: "10px 18px" })}>{genLoading ? "Erstellt…" : "Entwurf erstellen"}</button>
-                          <button onClick={() => setGenDocType(null)} style={btn("ghost", { fontSize: 13, padding: "10px 18px" })}>Abbrechen</button>
-                        </div>
-                      </div>
-                    )}
+                         <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", marginTop: 16 }}>
+  <button
+    onClick={submitGenerate}
+    disabled={genLoading}
+    style={btn("primary", {
+      fontSize: 13,
+      padding: "10px 18px",
+      opacity: genLoading ? 0.7 : 1,
+      cursor: genLoading ? "not-allowed" : "pointer"
+    })}
+  >
+    {genLoading ? "Entwurf wird erstellt…" : "Entwurf erstellen"}
+  </button>
+
+  <button
+    onClick={() => {
+      if (!genLoading) {
+        setGenDocType(null);
+        setGenAnswers({});
+      }
+    }}
+    disabled={genLoading}
+    style={btn("ghost", {
+      fontSize: 13,
+      padding: "10px 18px",
+      opacity: genLoading ? 0.5 : 1,
+      cursor: genLoading ? "not-allowed" : "pointer"
+    })}
+  >
+    Abbrechen
+  </button>
+</div>
+
+{genLoading && (
+  <div
+    style={{
+      marginTop: 14,
+      padding: 14,
+      border: `1px solid ${C.border}`,
+      borderRadius: 12,
+      background: C.surface2,
+      color: C.text,
+      fontSize: 14,
+      lineHeight: 1.6
+    }}
+  >
+    <strong>Entwurf wird gerade erstellt.</strong>
+    <br />
+    Bitte warten. Die KI erstellt jetzt den Dokumententwurf. Nicht mehrfach klicken und nicht die Seite wechseln.
+  </div>
+)}
 
                     {/* Geprüftes Dokument — Ergebnis */}
                     {geprüft && (
@@ -508,7 +554,27 @@ export default function App() {
               </div>
             )}
 
-            {(doneEvidences.length > 0 || generatedDocs.length > 0) && <button onClick={() => setPage("dashboard")} style={btn("primary", { width: "100%", padding: "13px" })}>Weiter zu Schritt 3: Report erstellen →</button>}
+            <div style={{ marginTop: 26 }}>
+  <button
+    onClick={() => {
+      if (doneEvidences.length === 0 && generatedDocs.length === 0) {
+        setError("Bitte laden Sie mindestens ein Dokument hoch oder erstellen Sie mindestens einen Entwurf.");
+        return;
+      }
+      setError("");
+      setPage("dashboard");
+    }}
+    style={btn("primary", { width: "100%", padding: "13px" })}
+  >
+    Weiter zu Schritt 3: Report erstellen →
+  </button>
+
+  <div style={{ marginTop: 10, color: C.muted, fontSize: 13, textAlign: "center" }}>
+    {doneEvidences.length + generatedDocs.length > 0
+      ? `${doneEvidences.length + generatedDocs.length} Dokument(e)/Entwurf(e) erfasst. Sie können jetzt den Report erstellen.`
+      : "Laden Sie ein Dokument hoch oder erstellen Sie einen Entwurf, um fortzufahren."}
+  </div>
+</div>
           </div>
         )}
 
