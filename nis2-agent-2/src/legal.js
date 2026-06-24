@@ -4,9 +4,9 @@
 
 export const ANBIETER = {
   name: "Sevket-Can Altintas — IT-Security & Compliance",
-  strasse: "[Straße und Hausnummer]",
-  plz_ort: "[PLZ und Ort]",
-  email: "[deine-email@beispiel.de]",
+  strasse: "Alte Gladbacher Strasse 28",
+  plz_ort: "47805, Krefeld",
+  email: "info@samtech-consulting.de
   telefon: "[optional: Telefonnummer]",
   ustId: "[optional: USt-IdNr. falls vorhanden]",
 };
