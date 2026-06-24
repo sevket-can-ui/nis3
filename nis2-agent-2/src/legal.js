@@ -3,10 +3,10 @@
 // Anwalt oder über einen Datenschutz-Generator (z.B. eRecht24) prüfen lassen.
 
 export const ANBIETER = {
-  name: "[Vor- und Nachname]",
-  strasse: "[Straße und Hausnummer]",
-  plz_ort: "[PLZ und Ort]",
-  email: "[deine-email@beispiel.de]",
+  name: "Can Altintas",
+  strasse: "Alte Gladbacher Strasse 28",
+  plz_ort: "47805",
+  email: "sevket-can@hotmail.de",
   telefon: "[optional: Telefonnummer]",
   ustId: "[optional: USt-IdNr. falls vorhanden]",
 };
